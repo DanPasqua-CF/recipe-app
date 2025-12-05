@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>RecipeApp | Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="shortcut icon" href="{% static 'recipes/images/favicon.ico' %}">
+  <link rel='stylesheet' type='text/css' href="{% static 'recipes/css/styles.css' %}">
+  <style type="text/css">
+    h1,
+    h3 {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      color: #f4db67;
+    }
+  </style>
+</head>
+<body class="body" style="margin-top: 15vh;">
+  <h1>Welcome to Recipe App</h1>
+  <h3>Create and manage your favorite recipes</h3>
+  <div>
+    <a href="/admin" class="login_btn" style="margin: 40px;">Admin Login</a>
+  </div>
+</body>
+</html>
