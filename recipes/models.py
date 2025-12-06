@@ -9,6 +9,7 @@ class Recipe(models.Model):
     )
     cooking_time = models.IntegerField(help_text="Cooking time in minutes")
     difficulty = None
+    pic = models.ImageField(upload_to='recipes', default='no_picture.jpg')
 
     # Determine recipe difficulty
     @property

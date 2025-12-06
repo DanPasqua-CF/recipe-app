@@ -1,69 +1,187 @@
-/* Body and General Styles */
-.body {
-    background-color: #407690;
-    text-align: center;
-    font-family: Arial, sans-serif;
-    color: #fff;
-    padding: 20px;
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #407690 0%, #2d5670 100%);
+  color: #fff;
+  line-height: 1.6;
+  min-height: 100vh;
 }
 
-/* Headings */
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+/* Navigation */
+.navbar {
+  background: rgba(64, 118, 144, 0.95);
+  padding: 1.2rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
 }
 
-h3 {
-    font-size: 1.5rem;
-    font-weight: 300;
-    margin-bottom: 5px;
+.navbar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* Button Styles */
-.login_btn {
-    display: inline-block;
-    padding: 12px 30px;
-    margin: 10px;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    background-color: #f4db67;
-    color: #407690;
-    border: 2px solid #f4db67;
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #f4db67;
+  text-decoration: none;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.login_btn:hover {
-    background-color: transparent;
-    color: #f4db67;
+/* Hero Section */
+.hero {
+  padding: 120px 2rem 80px;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 3.5rem;
+  color: #f4db67;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.hero p {
+  font-size: 1.4rem;
+  margin-bottom: 2.5rem;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 300;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 16px 45px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: #f4db67;
+  color: #407690;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(244, 219, 103, 0.4);
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+  border: 3px solid #f4db67;
+}
+
+.cta-button:hover {
+  background-color: transparent;
+  color: #f4db67;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(244, 219, 103, 0.5);
+}
+
+/* Features Section */
+.features {
+  padding: 60px 2rem 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.feature-card h3 {
+  color: #f4db67;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.feature-card p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2rem;
-    }
+  .hero h1 {
+    font-size: 2.5rem;
+  }
 
-    h3 {
-        font-size: 1rem;
-    }
+  .hero p {
+    font-size: 1.1rem;
+  }
 
-    img {
-        width: 200px !important;
-        height: 200px !important;
-    }
+  .logo {
+    font-size: 1.4rem;
+  }
 
-    .login_btn {
-        display: block;
-        margin: 15px auto;
-        max-width: 200px;
-    }
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .cta-button {
+    padding: 14px 35px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero {
+    padding: 100px 1.5rem 60px;
+  }
 }

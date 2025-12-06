@@ -6,19 +6,41 @@
   {% load static %}
   <link rel="shortcut icon" href="{% static 'recipes/images/favicon.ico' %}">
   <link rel='stylesheet' type='text/css' href="{% static 'recipes/css/styles.css' %}">
-  <style type="text/css">
-    h1,
-    h3 {
-      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      color: #f4db67;
-    }
-  </style>
 </head>
-<body class="body" style="margin-top: 15vh;">
-  <h1>Welcome to Recipe App</h1>
-  <h3>Create and manage your favorite recipes</h3>
-  <div>
-    <a href="/admin" class="login_btn" style="margin: 40px;">Admin Login</a>
-  </div>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <a href="/" class="logo">🍳 RecipeApp</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to Recipe App</h1>
+    <p>Take control of what you put on your plate</p>
+    <a href="/admin" class="cta-button">Admin Login</a>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Create</h3>
+        <p>Be a mad scientist in the kitchen, and create some concoctions to make mouths explode.</p>
+      </div>
+      
+      <div class="feature-card">
+        <h3>Remaster</h3>
+        <p>Use new eyes to put a twist on those old recipes, and add some fresh flavors of your own.</p>
+      </div>
+      
+      <div class="feature-card">
+        <h3>Make Space</h3>
+        <p>Sometimes recipes don't work out. Don't take up space; keep your recipe book clean for your best ideas.</p>
+      </div>
+    </div>
+  </section>
+
 </body>
 </html>
