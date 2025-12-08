@@ -19,7 +19,8 @@
   <section class="hero">
     <h1>Welcome to Recipe App</h1>
     <p>Take control of what you put on your plate</p>
-    <a href="/admin" class="cta-button">Admin Login</a>
+    <a href="{% url 'recipes:list' %}" class="cta-button">View Recipes</a>
+    <a href="/admin" class="cta-button" style="margin-left: 1rem; background: transparent; color: #f4db67;">Admin Login</a>
   </section>
 
   <!-- Features Section -->

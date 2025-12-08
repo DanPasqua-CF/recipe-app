@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{{ recipe.name }} | RecipeApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="shortcut icon" href="{% static 'recipes/images/favicon.ico' %}">
+  <link rel='stylesheet' type='text/css' href="{% static 'recipes/css/styles.css' %}">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <a href="{% url 'recipes:home' %}" class="logo">RecipeApp</a>
+      <a href="{% url 'recipes:list' %}" class="nav-link">Back to Recipes</a>
+    </div>
+  </nav>
+
+  <!-- Recipe Detail Section -->
+  <section class="recipe-detail-section">
+    <div class="detail-container">
+      
+      <!-- Recipe Image -->
+      <div class="detail-image-wrapper">
+        {% if recipe.pic %}
+          <img src="{{ recipe.pic.url }}" alt="{{ recipe.name }}" class="detail-image">
+        {% else %}
+          <div class="detail-placeholder">No Image Available</div>
+        {% endif %}
+      </div>
+
+      <!-- Recipe Info -->
+      <div class="detail-content">
+        <h1>{{ recipe.name }}</h1>
+        
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+          <div class="stat-item">
+            <div>
+              <p class="stat-label">Cooking Time</p>
+              <p class="stat-value">{{ recipe.cooking_time }} minutes</p>
+            </div>
+          </div>
+          
+          <div class="stat-item">
+            <div>
+              <p class="stat-label">Difficulty</p>
+              <p class="stat-value difficulty-{{ recipe.calculate_difficulty|lower }}">
+                {{ recipe.calculate_difficulty }}
+              </p>
+            </div>
+          </div>
+          
+          <div class="stat-item">
+            <div>
+              <p class="stat-label">Ingredients</p>
+              <p class="stat-value">{{ recipe.ingredients|wordcount }} items</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ingredients Section -->
+        <div class="detail-section">
+          <h2>Ingredients</h2>
+          <ul class="ingredients-list">
+            {% for ingredient in ingredients_list %}
+              <li>{{ ingredient }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="detail-actions">
+          <a href="{% url 'recipes:list' %}" class="detail-button secondary">Back to All Recipes</a>
+          <a href="/admin/recipes/recipe/{{ recipe.pk }}/change/" class="detail-button primary">Edit Recipe</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
