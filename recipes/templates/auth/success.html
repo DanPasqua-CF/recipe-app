@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>RecipeApp | Logged Out</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="shortcut icon" href="{% static 'recipes/images/favicon.ico' %}">
+  <link rel='stylesheet' type='text/css' href="{% static 'recipes/css/styles.css' %}">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <a href="{% url 'recipes:home' %}" class="logo">🍳 RecipeApp</a>
+    </div>
+  </nav>
+
+  <!-- Success Message Container -->
+  <div class="success-container">    
+    {% comment %} print heading {% endcomment %}
+    <h1>You've successfully logged out</h1>
+    
+    <p>Thanks for using RecipeApp!</p>
+
+    {% comment %} check for error message {% endcomment %}
+    {% if error_message %}
+      <div class="error-message">
+        {{ error_message }}
+      </div>
+    {% endif %}
+
+    <div class="success-actions">
+      <a href="{% url 'recipes:login' %}" class="cta-button">Log in</a>
+      <a href="{% url 'recipes:home' %}" class="cta-button" style="background: transparent; color: #f4db67;">Return home</a>
+    </div>
+  </div>
+</body>
+</html>

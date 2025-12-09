@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>RecipeApp | Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="shortcut icon" href="{% static 'recipes/images/favicon.ico' %}">
+  <link rel='stylesheet' type='text/css' href="{% static 'recipes/css/styles.css' %}">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <a href="{% url 'recipes:home' %}" class="logo">🍳 RecipeApp</a>
+    </div>
+  </nav>
+
+  <!-- Login Form -->
+  <div class="login-container">
+    <h1>Login</h1>
+    
+    {% comment %} check for error message {% endcomment %}
+    {% if error_message %}
+      <div class="error-message">
+        {{ error_message }}
+      </div>
+    {% endif %}
+
+    {% comment %} Display Django messages {% endcomment %}
+    {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% comment %} print form {% endcomment %}
+    <form action="" method="POST">
+      {% comment %} add Django security token {% endcomment %}
+      {% csrf_token %}
+      
+      {% comment %} print form received from view {% endcomment %}
+      {{ form }}
+      
+      {% comment %} add button {% endcomment %}
+      <button type="submit" class="login-button">Login</button>
+    </form>
+
+    <div class="back-link">
+      <a href="{% url 'recipes:home' %}">Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>

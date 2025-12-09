@@ -12,6 +12,14 @@
   <nav class="navbar">
     <div class="navbar-content">
       <a href="/" class="logo">🍳 RecipeApp</a>
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        {% if user.is_authenticated %}
+          <span style="color: #f4db67;">Welcome, {{ user.username }}!</span>
+          <a href="{% url 'recipes:logout' %}" class="nav-link" style="color: #fff; text-decoration: none;">Logout</a>
+        {% else %}
+          <a href="{% url 'recipes:login' %}" class="nav-link" style="color: #f4db67; text-decoration: none; font-weight: 600;">Login</a>
+        {% endif %}
+      </div>
     </div>
   </nav>
 
@@ -19,8 +27,16 @@
   <section class="hero">
     <h1>Welcome to Recipe App</h1>
     <p>Take control of what you put on your plate</p>
-    <a href="{% url 'recipes:list' %}" class="cta-button">View Recipes</a>
-    <a href="/admin" class="cta-button" style="margin-left: 1rem; background: transparent; color: #f4db67;">Admin Login</a>
+    
+    <div class="button-container">
+      {% if user.is_authenticated %}
+        <a href="{% url 'recipes:list' %}" class="cta-button">View Recipes</a>
+        <a href="/admin" class="cta-button" style="background: transparent; color: #f4db67;">Admin Panel</a>
+      {% else %}
+        <a href="{% url 'recipes:login' %}" class="cta-button">Chef login</a>
+        <a href="/admin" class="cta-button" style="background: transparent; color: #f4db67;">Admin Login</a>
+      {% endif %}
+    </div>
   </section>
 
   <!-- Features Section -->

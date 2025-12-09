@@ -79,6 +79,14 @@ body {
   animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
+.hero .button-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .cta-button {
   display: inline-block;
   padding: 16px 45px;
@@ -92,6 +100,8 @@ body {
   box-shadow: 0 4px 15px rgba(244, 219, 103, 0.4);
   animation: fadeInUp 0.8s ease-out 0.4s both;
   border: 3px solid #f4db67;
+  min-width: 220px;
+  text-align: center;
 }
 
 .cta-button:hover {
@@ -449,6 +459,205 @@ body {
   transform: translateY(-2px);
 }
 
+/* Login Page Styles */
+.login-container {
+  max-width: 450px;
+  margin: 120px auto 80px;
+  padding: 3rem 2.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.login-container h1 {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 2.5rem;
+  color: #f4db67;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Success Page Styles */
+.success-container {
+  max-width: 500px;
+  margin: 120px auto 80px;
+  padding: 3rem 2.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: rgba(74, 222, 128, 0.2);
+  border: 3px solid #4ade80;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: #4ade80;
+  font-weight: bold;
+}
+
+.success-container h1 {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 2.2rem;
+  color: #f4db67;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.success-container p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.success-actions {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.success-actions .cta-button {
+  margin: 0;
+  animation: none;
+}
+
+/* Error and Success Messages */
+.error-message {
+  background: rgba(239, 68, 68, 0.15);
+  color: #fecaca;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #ef4444;
+}
+
+.messages {
+  margin-bottom: 1.5rem;
+}
+
+.alert {
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  border-left: 4px solid;
+}
+
+.alert-error {
+  background: rgba(239, 68, 68, 0.15);
+  color: #fecaca;
+  border-color: #ef4444;
+}
+
+.alert-success {
+  background: rgba(74, 222, 128, 0.15);
+  color: #bbf7d0;
+  border-color: #4ade80;
+}
+
+/* Django Form Styling */
+.login-container form p {
+  margin-bottom: 1.5rem;
+}
+
+.login-container form p label {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.login-container form p input,
+.login-container form input[type="text"],
+.login-container form input[type="password"] {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-container form p input:focus,
+.login-container form input[type="text"]:focus,
+.login-container form input[type="password"]:focus {
+  outline: none;
+  border-color: #f4db67;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 4px rgba(244, 219, 103, 0.15);
+}
+
+.login-container form p input::placeholder,
+.login-container form input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Help text styling */
+.login-container form p .helptext {
+  display: block;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.5rem;
+}
+
+/* Login Button */
+.login-button {
+  width: 100%;
+  padding: 1rem;
+  background: #f4db67;
+  color: #407690;
+  border: 3px solid #f4db67;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(244, 219, 103, 0.4);
+  margin-top: 10px;
+}
+
+.login-button:hover {
+  background: transparent;
+  color: #f4db67;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(244, 219, 103, 0.5);
+}
+
+/* Back Link */
+.back-link {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.back-link a {
+  color: #f4db67;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.back-link a:hover {
+  color: #fff;
+}
+
 /* Animations */
 @keyframes fadeInUp {
   from {
@@ -523,6 +732,15 @@ body {
   .stat-item {
     padding: 1rem;
   }
+
+  .login-container {
+    margin: 100px 1rem 60px;
+    padding: 2rem 1.5rem;
+  }
+
+  .login-container h1 {
+    font-size: 2rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -536,5 +754,14 @@ body {
 
   .hero {
     padding: 100px 1.5rem 60px;
+  }
+
+  .login-container {
+    padding: 2rem 1.2rem;
+  }
+
+  .login-button {
+    padding: 0.9rem;
+    font-size: 1rem;
   }
 }
