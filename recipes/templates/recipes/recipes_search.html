@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>RecipeApp | Search</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="shortcut icon" href="{% static 'recipes/images/favicon.ico' %}">
+  <link rel='stylesheet' type='text/css' href="{% static 'recipes/css/styles.css' %}">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <a href="{% url 'recipes:home' %}" class="logo">🍳 RecipeApp</a>
+      <div style="display: flex; gap: 1.5rem;">
+        <a href="{% url 'recipes:list' %}" class="nav-link">All Recipes</a>
+        <a href="{% url 'recipes:search' %}" class="nav-link" style="color: #f4db67;">Search</a>
+        <a href="{% url 'recipes:logout' %}" class="nav-link">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Search Section -->
+  <section class="recipe-list-section">
+    <h1>Search Recipes</h1>
+
+    <!-- Messages -->
+    {% if messages %}
+    <div class="messages" style="max-width: 800px; margin: 0 auto 2rem;">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Search Form -->
+    <div class="search-form-container" style="max-width: 800px; margin: 0 auto 3rem; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1);">
+      <form method="POST">
+        {% csrf_token %}
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+          <!-- Recipe Name -->
+          <div>
+            <label style="display: block; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.9); font-weight: 500;">
+              {{ form.recipe_name.label }}
+            </label>
+            {{ form.recipe_name }}
+          </div>
+
+          <!-- Ingredient -->
+          <div>
+            <label style="display: block; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.9); font-weight: 500;">
+              {{ form.ingredient.label }}
+            </label>
+            {{ form.ingredient }}
+          </div>
+
+          <!-- Difficulty -->
+          <div>
+            <label style="display: block; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.9); font-weight: 500;">
+              {{ form.difficulty.label }}
+            </label>
+            {{ form.difficulty }}
+          </div>
+
+          <!-- Chart Type -->
+          <div>
+            <label style="display: block; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.9); font-weight: 500;">
+              {{ form.chart_type.label }}
+            </label>
+            {{ form.chart_type }}
+          </div>
+        </div>
+
+        <button type="submit" class="cta-button" style="width: 100%; margin: 0;">
+          Search Recipes
+        </button>
+      </form>
+    </div>
+
+    <!-- Search Results -->
+    {% if recipes_df is not None %}
+    <div style="margin-top: 3rem;">
+      <h2 style="text-align: center; color: #f4db67; margin-bottom: 2rem; font-size: 2rem;">
+        Search Results ({{ recipes_df|length }} recipe{{ recipes_df|length|pluralize }})
+      </h2>
+      
+      {% if recipes_df|length > 0 %}
+        <!-- Results Table -->
+        <div style="overflow-x: auto; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 3rem;">
+          <table style="width: 100%; border-collapse: collapse;">
+            <thead style="background: rgba(64, 118, 144, 0.8);">
+              <tr>
+                <th style="padding: 1.2rem; text-align: left; color: #f4db67; font-weight: 600; border-bottom: 2px solid #f4db67;">Recipe Name</th>
+                <th style="padding: 1.2rem; text-align: left; color: #f4db67; font-weight: 600; border-bottom: 2px solid #f4db67;">Ingredients</th>
+                <th style="padding: 1.2rem; text-align: left; color: #f4db67; font-weight: 600; border-bottom: 2px solid #f4db67;">Cooking Time</th>
+                <th style="padding: 1.2rem; text-align: left; color: #f4db67; font-weight: 600; border-bottom: 2px solid #f4db67;">Difficulty</th>
+                <th style="padding: 1.2rem; text-align: left; color: #f4db67; font-weight: 600; border-bottom: 2px solid #f4db67;">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for index, row in recipes_df.iterrows %}
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.1); transition: background 0.2s;">
+                  <td style="padding: 1.2rem;">
+                    <a href="{% url 'recipes:detail' row.0 %}" style="color: #f4db67; text-decoration: none; font-weight: 600; transition: color 0.3s;">
+                      {{ row.1 }}
+                    </a>
+                  </td>
+                  <td style="padding: 1.2rem; color: rgba(255, 255, 255, 0.85);">
+                    {{ row.2|truncatewords:8 }}
+                  </td>
+                  <td style="padding: 1.2rem; color: rgba(255, 255, 255, 0.85);">
+                    {{ row.3 }} min
+                  </td>
+                  <td style="padding: 1.2rem;">
+                    <span class="stat-value difficulty-{{ row.4|lower }}">
+                      {{ row.4 }}
+                    </span>
+                  </td>
+                  <td style="padding: 1.2rem;">
+                    <a href="{% url 'recipes:detail' row.0 %}" class="cta-button" style="padding: 0.5rem 1.2rem; font-size: 0.9rem; display: inline-block; min-width: auto;">
+                      View Details
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Chart Visualization -->
+        {% if chart %}
+        <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1);">
+          <h2 style="text-align: center; color: #f4db67; margin-bottom: 2rem; font-size: 2rem;">
+            Data Visualization
+          </h2>
+          <div style="display: flex; justify-content: center;">
+            <img src="data:image/png;base64,{{ chart }}" alt="Recipe Chart" style="max-width: 100%; height: auto; border-radius: 12px;">
+          </div>
+        </div>
+        {% endif %}
+      {% endif %}
+    </div>
+    {% endif %}
+  </section>
+
+  <style>
+    /* Form input styling */
+    .search-form-container input[type="text"],
+    .search-form-container select {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .search-form-container input[type="text"]:focus,
+    .search-form-container select:focus {
+      outline: none;
+      border-color: #f4db67;
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 0 0 4px rgba(244, 219, 103, 0.15);
+    }
+
+    .search-form-container input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Table row hover */
+    tbody tr:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Link hover in table */
+    tbody a:hover {
+      color: #fff !important;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .search-form-container > form > div {
+        grid-template-columns: 1fr !important;
+      }
+      
+      table {
+        font-size: 0.9rem;
+      }
+      
+      table th,
+      table td {
+        padding: 0.8rem !important;
+      }
+    }
+  </style>
+</body>
+</html>
