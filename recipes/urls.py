@@ -9,5 +9,7 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('list/', views.recipes_list, name='list'),
     path('detail/<int:id>/', views.recipes_details, name='detail'),
-    path('search/', views.recipe_search, name='search')
+    path('search/', views.recipe_search, name='search'),
+    path('about/', views.about, name='about'),
+    path('add-recipe/', views.add_recipe, name='add')
 ]

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>RecipeApp | About</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="shortcut icon" href="{% static 'recipes/images/favicon.ico' %}">
+  <link rel='stylesheet' type='text/css' href="{% static 'recipes/css/styles.css' %}">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <a href="{% url 'recipes:home' %}" class="logo">🍳 RecipeApp</a>
+      <div style="display: flex; gap: 1.5rem;">
+        {% if user.is_authenticated %}
+          <a href="{% url 'recipes:list' %}" class="nav-link">All Recipes</a>
+          <a href="{% url 'recipes:add' %}" class="nav-link">Add Recipe</a>
+          <a href="{% url 'recipes:search' %}" class="nav-link">Search</a>
+          <a href="{% url 'recipes:about' %}" class="nav-link" style="color: #f4db67;">About</a>
+          <a href="{% url 'recipes:logout' %}" class="nav-link">Log out</a>
+        {% else %}
+          <a href="{% url 'recipes:about' %}" class="nav-link" style="color: #f4db67;">About</a>
+          <a href="{% url 'recipes:login' %}" class="nav-link">Login</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <!-- About Hero Section -->
+  <section class="hero">
+    <h1>Dan Pasqua</h1>
+    <p>Development | Quality | Automation</p>
+  </section>
+
+  <!-- About Content -->
+  <section class="recipe-list-section" style="padding-top: 40px;">
+    
+    <!-- Welcome Section -->
+    <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 2rem; margin-bottom: 1rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+      <h2 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 2rem; color: #f4db67; margin-bottom: 1rem;">About Me</h2>
+      <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1rem; color: rgba(255, 255, 255, 0.9);">
+        From technical writer to QA engineer, I've combined my love of writing with a love for tech that I never knew I had until I stumbled into the world of software.
+      </p>
+      <p style="font-size: 1.1rem; line-height: 1.8; color: rgba(255, 255, 255, 0.9);">
+        After more than a decade in the QA world, I'm ready to take the next step into development. My creative eye and desire to learn has given me the confidence to change my focus once again.
+      </p>
+      <p style="font-size: 1.1rem; line-height: 1.8; color: rgba(255, 255, 255, 0.9); margin-top: 1.5rem;">
+        See what I've been up to: <a href="https://github.com/DanPasqua-CF" target="_blank" rel="noopener noreferrer" style="color: #f4db67; text-decoration: none; font-weight: 600; transition: color 0.3s ease;">GitHub</a> | <a href="https://danpasqua-cf.github.io/portfolio-website/" target="_blank" rel="noopener noreferrer" style="color: #f4db67; text-decoration: none; font-weight: 600; transition: color 0.3s ease;">Portfolio</a> | <a href="mailto:dan.pasqua.cf@example.com" style="color: #f4db67; text-decoration: none; font-weight: 600; transition: color 0.3s ease;">Email</a> | <a href="https://www.linkedin.com/in/dan-pasqua/" target="_blank" rel="noopener noreferrer" style="color: #f4db67; text-decoration: none; font-weight: 600; transition: color 0.3s ease;">LinkedIn</a>
+      </p>
+    </div>
+
+    <!-- About Project Section -->
+    <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 2rem; margin-bottom: 1rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+      <h2 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 2rem; color: #f4db67; margin-bottom: 1rem;">About This Project</h2>
+      <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; color: rgba(255, 255, 255, 0.9);">
+        The Recipe App is built with Django and Python, enabling users to easily add, modify, and delete recipes. Got concerns about difficult recipes? The app automatically calculates difficulty levels based on cooking time and ingredients. 
+      </p>
+      <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; color: rgba(255, 255, 255, 0.9);">
+        Check out my code: <a href="https://github.com/DanPasqua-CF/recipe-app" target="_blank" rel="noopener noreferrer" 
+          style="color: #f4db67; text-decoration: none; transition: color 0.3s ease;">
+          github.com/DanPasqua-CF/recipe-app.
+        </a>
+      </p>
+    </div>
+
+
+    <!-- Back to Home -->
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="{% url 'recipes:home' %}" class="cta-button">Back to Home</a>
+    </div>
+
+  </section>
+
+</body>
+</html>

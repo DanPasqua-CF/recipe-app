@@ -14,9 +14,17 @@ except ImportError:
 
 # Create your views here.
 
+# About page
+def about(request):
+    return render(request, 'recipes/recipes_about.html')
+
 # Home page
 def home(request):
     return render(request, 'recipes/recipes_home.html')
+
+# About page
+def about(request):
+    return render(request, 'recipes/recipes_about.html')
 
 # Records
 def records(request):
@@ -207,3 +215,30 @@ def generate_chart(df, chart_type):
     
     graphic = base64.b64encode(image_png).decode('utf-8')
     return graphic
+
+# Add recipe
+@login_required(login_url='/login/')
+def add_recipe(request):
+    if request.method == 'POST':
+        # Get form data
+        name = request.POST.get('name')
+        ingredients = request.POST.get('ingredients')
+        cooking_time = request.POST.get('cooking_time')
+        pic = request.FILES.get('pic')
+        
+        # Validate required fields
+        if name and ingredients and cooking_time:
+            # Create and save recipe
+            recipe = Recipe.objects.create(
+                name=name,
+                ingredients=ingredients,
+                cooking_time=int(cooking_time),
+                pic=pic
+            )
+            
+            messages.success(request, f'Recipe "{name}" added successfully!')
+            return redirect('recipes:list')
+        else:
+            messages.error(request, 'Please fill in all required fields.')
+    
+    return render(request, 'recipes/recipes_add.html')

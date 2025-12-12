@@ -73,7 +73,6 @@ body {
 
 .hero p {
   font-size: 1.4rem;
-  margin-bottom: 2.5rem;
   color: rgba(255, 255, 255, 0.95);
   font-weight: 300;
   animation: fadeInUp 0.8s ease-out 0.2s both;
@@ -102,6 +101,7 @@ body {
   border: 3px solid #f4db67;
   min-width: 220px;
   text-align: center;
+  margin-top: 1.5rem;
 }
 
 .cta-button:hover {
@@ -658,6 +658,48 @@ body {
   color: #fff;
 }
 
+/* Visitor Counter Styles */
+.visitor-counter-section {
+  padding: 30px 2rem 60px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.visitor-counter-container {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.visitor-counter-container h2 {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  font-weight: 500;
+}
+
+.visitor-counter-container p {
+  display: none;
+}
+
+.visitor-count-display {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #f4db67;
+  margin: 0;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+
 /* Animations */
 @keyframes fadeInUp {
   from {
@@ -741,6 +783,27 @@ body {
   .login-container h1 {
     font-size: 2rem;
   }
+
+  .visitor-counter-section {
+    padding: 20px 1.5rem 50px;
+  }
+
+  .visitor-counter-container {
+    padding: 1rem 1.2rem;
+    gap: 0.8rem;
+  }
+
+  .visitor-counter-container h2 {
+    font-size: 0.85rem;
+  }
+
+  .visitor-count-display {
+    font-size: 1.1rem;
+  }
+
+  .visitor-counter-icon {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -762,6 +825,10 @@ body {
 
   .login-button {
     padding: 0.9rem;
+    font-size: 1rem;
+  }
+
+  .visitor-count-display {
     font-size: 1rem;
   }
 }

@@ -399,3 +399,11 @@ class RecipeURLTest(TestCase):
     def test_search_url_resolves(self):
         url = reverse('recipes:search')
         self.assertEqual(url, '/search/')
+
+    def test_about_url_resolves(self):
+        url = reverse('recipes:about')
+        self.assertEqual(url, '/about/')
+
+    def test_add_recipe_url_resolves(self):
+        url = reverse('recipes:add')
+        self.assertEqual(url, '/add-recipe/')

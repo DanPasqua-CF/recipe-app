@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>RecipeApp | Add Recipe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="shortcut icon" href="{% static 'recipes/images/favicon.ico' %}">
+  <link rel='stylesheet' type='text/css' href="{% static 'recipes/css/styles.css' %}">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div style="display: flex; gap: 1.5rem; align-items: center;">
+        <a href="{% url 'recipes:home' %}" class="logo">🍳 RecipeApp</a>
+        {% if user.is_authenticated %}
+          <span style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">Welcome, {{ user.username }}!</span>
+        {% endif %}
+      </div>
+      <div style="display: flex; gap: 1.5rem;">
+        <a href="{% url 'recipes:list' %}" class="nav-link">All Recipes</a>
+        <a href="{% url 'recipes:add' %}" class="nav-link" style="color: #f4db67;">Add Recipe</a>
+        <a href="{% url 'recipes:search' %}" class="nav-link">Search</a>
+        <a href="{% url 'recipes:about' %}" class="nav-link">About</a>
+        <a href="{% url 'recipes:logout' %}" class="nav-link">Log out</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Add Recipe Section -->
+  <section class="recipe-list-section">
+    <h1>Add New Recipe</h1>
+
+    <!-- Messages -->
+    {% if messages %}
+    <div class="messages" style="max-width: 700px; margin: 0 auto 2rem;">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Add Recipe Form -->
+    <div class="login-container" style="max-width: 700px;">
+      <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Recipe Name -->
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; margin-bottom: 0.8rem; color: rgba(255, 255, 255, 0.9); font-weight: 500; font-size: 1rem;">
+            Recipe Name
+          </label>
+          <input type="text" name="name" id="id_name" required
+                 style="width: 100%; padding: 1rem 1.2rem; border: 2px solid rgba(255, 255, 255, 0.15); border-radius: 12px; font-size: 1rem; background: rgba(255, 255, 255, 0.08); color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: all 0.3s ease;"
+                 placeholder="Enter recipe name">
+        </div>
+
+        <!-- Ingredients -->
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; margin-bottom: 0.8rem; color: rgba(255, 255, 255, 0.9); font-weight: 500; font-size: 1rem;">
+            Ingredients
+          </label>
+          <textarea name="ingredients" id="id_ingredients" required rows="6"
+                    style="width: 100%; padding: 1rem 1.2rem; border: 2px solid rgba(255, 255, 255, 0.15); border-radius: 12px; font-size: 1rem; background: rgba(255, 255, 255, 0.08); color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: all 0.3s ease; resize: vertical;"
+                    placeholder="List ingredients (separate with commas or new lines)"></textarea>
+        </div>
+
+        <!-- Cooking Time -->
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; margin-bottom: 0.8rem; color: rgba(255, 255, 255, 0.9); font-weight: 500; font-size: 1rem;">
+            Cooking Time (minutes)
+          </label>
+          <input type="number" name="cooking_time" id="id_cooking_time" required min="1"
+                 style="width: 100%; padding: 1rem 1.2rem; border: 2px solid rgba(255, 255, 255, 0.15); border-radius: 12px; font-size: 1rem; background: rgba(255, 255, 255, 0.08); color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: all 0.3s ease;"
+                 placeholder="Enter cooking time in minutes">
+        </div>
+
+        <!-- Picture Upload -->
+        <div style="margin-bottom: 2rem;">
+          <label style="display: block; margin-bottom: 0.8rem; color: rgba(255, 255, 255, 0.9); font-weight: 500; font-size: 1rem;">
+            Picture (optional)
+          </label>
+          <input type="file" name="pic" id="id_picture" accept="image/*"
+                 style="width: 100%; padding: 1rem 1.2rem; border: 2px solid rgba(255, 255, 255, 0.15); border-radius: 12px; font-size: 1rem; background: rgba(255, 255, 255, 0.08); color: rgba(255, 255, 255, 0.9); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: all 0.3s ease;">
+          <p style="font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); margin-top: 0.5rem;">
+            Upload an image of your recipe (JPG, PNG)
+          </p>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="login-button">
+          Add Recipe
+        </button>
+
+        <!-- Back Link -->
+        <div class="back-link">
+          <a href="{% url 'recipes:list' %}">← Back to All Recipes</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <style>
+    /* Form input focus styles */
+    input:focus,
+    textarea:focus {
+      outline: none !important;
+      border-color: #f4db67 !important;
+      background: rgba(255, 255, 255, 0.12) !important;
+      box-shadow: 0 0 0 4px rgba(244, 219, 103, 0.15) !important;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* File input styling */
+    input[type="file"]::file-selector-button {
+      background: #f4db67;
+      color: #407690;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-right: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    input[type="file"]::file-selector-button:hover {
+      background: rgba(244, 219, 103, 0.8);
+    }
+  </style>
+
+</body>
+</html>

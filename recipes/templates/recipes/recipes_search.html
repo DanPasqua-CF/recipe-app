@@ -14,8 +14,10 @@
       <a href="{% url 'recipes:home' %}" class="logo">🍳 RecipeApp</a>
       <div style="display: flex; gap: 1.5rem;">
         <a href="{% url 'recipes:list' %}" class="nav-link">All Recipes</a>
+        <a href="{% url 'recipes:add' %}" class="nav-link">Add Recipe</a>
         <a href="{% url 'recipes:search' %}" class="nav-link" style="color: #f4db67;">Search</a>
-        <a href="{% url 'recipes:logout' %}" class="nav-link">Logout</a>
+        <a href="{% url 'recipes:about' %}" class="nav-link">About</a>
+        <a href="{% url 'recipes:logout' %}" class="nav-link">Log out</a>
       </div>
     </div>
   </nav>
