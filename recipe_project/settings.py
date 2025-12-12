@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'storages',  # AWS S3 storage
-    'recipes',   # app
+    'recipes',   # your app
 ]
 
 # -----------------------------
@@ -48,7 +48,7 @@ INSTALLED_APPS = [
 # -----------------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # for static files
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # static files
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -86,7 +86,7 @@ DATABASES = {
     }
 }
 
-# Heroku database configuration
+# Heroku database config
 db_from_env = dj_database_url.config(conn_max_age=500, default=None)
 if db_from_env:
     DATABASES['default'].update(db_from_env)
@@ -116,13 +116,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# WhiteNoise static files settings
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 WHITENOISE_USE_FINDERS = True
 WHITENOISE_AUTOREFRESH = True
 
 # -----------------------------
-# MEDIA FILES (S3 or Local)
+# AWS S3 MEDIA FILES
 # -----------------------------
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
@@ -136,10 +135,9 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 AWS_LOCATION = 'recipes'
 
-# Use S3 if credentials are set
+# Use S3 if credentials exist
 if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY and AWS_STORAGE_BUCKET_NAME:
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
     MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com/{AWS_LOCATION}/'
 else:
     MEDIA_URL = '/media/'
