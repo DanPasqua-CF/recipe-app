@@ -6,17 +6,10 @@ class Recipe(models.Model):
     # Fields
     # -----------------------------
     name = models.CharField(max_length=50)
-    ingredients = models.CharField(
-        max_length=225,
-        help_text="Enter the ingredients, separated by a comma"
-    )
-    cooking_time = models.IntegerField(help_text="Cooking time in minutes")
-    pic = models.ImageField(
-        upload_to='recipes/',  # saves files under 'recipes/' in S3
-        default='recipes/no_picture.jpg',
-        blank=True,
-        null=True
-    )
+    ingredients = models.CharField(max_length=225)
+    cooking_time = models.IntegerField()
+
+    pic = models.ImageField(upload_to='', blank=True, null=True)
 
     # -----------------------------
     # Calculate difficulty
