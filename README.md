@@ -15,7 +15,7 @@ To install the Recipe application, follow these instructions:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/LindsellR/recipe-app.git
+https://github.com/DanPasqua-CF/recipe-app.git
 cd recipe-app/src
 ````
 
